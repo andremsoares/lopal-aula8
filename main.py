@@ -7,7 +7,7 @@ def carregar_produtos():
     return produtos
 
 def salvar_produtos(produtos):
-    arquivo = open("produtos.json", "r", encoding="utf-8")
+    arquivo = open("produtos.json", "w", encoding="utf-8")
     json.dump(produtos, arquivo, indent=4, ensure_ascii=False)
     arquivo.close()
     
@@ -19,28 +19,41 @@ def salvar_produtos(produtos):
 # 5 - Remover produtos
 
 def mostrar():
-    arquivo = open("produtos.json", "r", encoding="utf-8")
-    produtos = json.load(arquivo)
-    arquivo.close()
-    print(produtos)
+    print(carregar_produtos())
     
 def pesquisar():
+    produtos = carregar_produtos()
     nome = input("Digite o nome do produto que você deseja buscar: ")
-    arquivo = open("produtos.json", "r", encoding="utf-8")
-    produtos = json.load(arquivo)
-    arquivo.close()
     for produto in produtos:
         if nome in produto["nome"]:
             print(produto)
             
 def pesquisa_categoria():
+    produtos = carregar_produtos()
     categoria = input("Digite o nome do produto que você deseja buscar: ")
-    arquivo = open("produtos.json", "r", encoding="utf-8")
-    produtos = json.load(arquivo)
-    arquivo.close()
     for produto in produtos:
         if categoria in produto["categoria"]:
             print(produto)
+
+def adicionar():
+    produtos = carregar_produtos()
+    id = produtos[-1]["id"]
+    nome = input("Digite o nome do produto: ")
+    categoria = input("Digite a categoria do produto: ")
+    preco = float(input("Digite o preço do produto: "))
+    estoque = input("Digite o estoque do produto: ")
+    id += 1
+    
+    novo_produto = {
+        "id": id,
+        "nome": nome,
+        "categoria": categoria,
+        "preco": preco,
+        "estoque": estoque
+    }
+
+    produtos.append(novo_produto)
+    salvar_produtos(produtos)
 
 while True:
     print("====CONTROLE DE ESTOQUE====")
@@ -59,6 +72,8 @@ while True:
         pesquisar()
     elif opcao == "3":
         pesquisa_categoria()
+    elif opcao == "4":
+        adicionar()
     elif opcao == "0":
         print("Saindo do sistema...")
         break
