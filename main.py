@@ -22,6 +22,15 @@ def mostrar():
     produtos = json.load(arquivo)
     arquivo.close()
     print(produtos)
+    
+def pesquisar():
+    nome = input("Digite o nome do produto que você deseja buscar: ")
+    arquivo = open("produtos.json", "r", encoding="utf-8")
+    produtos = json.load(arquivo)
+    arquivo.close()
+    for produto in produtos:
+        if nome in produto["nome"]:
+            print(produto)
 
 while True:
     print("====CONTROLE DE ESTOQUE====")
@@ -35,6 +44,8 @@ while True:
     
     if opcao == "1":
         mostrar()
+    elif opcao == "2":
+        pesquisar()
     elif opcao == "0":
         print("Saindo do sistema...")
         break
