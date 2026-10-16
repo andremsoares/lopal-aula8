@@ -19,20 +19,29 @@ def salvar_produtos(produtos):
 # 5 - Remover produtos
 
 def mostrar():
-    print(carregar_produtos())
+    produtos = carregar_produtos()
+    for produto in produtos:
+        print(f"ID: {produto["id"]}, Nome: {produto["nome"]}, Categoria: {produto["categoria"]}, Preço: {produto["preco"]}, Estoque: {produto["estoque"]}.")
     
 def pesquisar():
     produtos = carregar_produtos()
     nome = input("Digite o nome do produto que você deseja buscar: ")
     for produto in produtos:
         if nome in produto["nome"]:
-            print(produto)
+            print(f"ID: {produto["id"]}, Nome: {produto["nome"]}, Categoria: {produto["categoria"]}, Preço: {produto["preco"]}, Estoque: {produto["estoque"]}.")
             
 def pesquisa_categoria():
     produtos = carregar_produtos()
     categoria = input("Digite o nome do produto que você deseja buscar: ")
     for produto in produtos:
         if categoria in produto["categoria"]:
+            print(produto)
+            
+def pesquisa_preco():
+    produtos = carregar_produtos()
+    preco = float(input("Digite o preço máximo que você deseja buscar: "))
+    for produto in produtos:
+        if preco <= produtos["preco"]:
             print(produto)
 
 def adicionar():
@@ -54,14 +63,16 @@ def adicionar():
 
     produtos.append(novo_produto)
     salvar_produtos(produtos)
+    
 
 while True:
     print("====CONTROLE DE ESTOQUE====")
     print("1 - Mostrar produtos")
     print("2 - Pesquisar produtos")
     print("3 - Pesquisa por categoria")
-    print("4 - Adicionar produtos")
-    print("5 - Remover produtos")
+    print("4 - Pesquisa por preço")
+    print("5 - Adicionar produtos")
+    print("6 - Remover produtos")
     print("0 - Sair")
     
     opcao = input("Digite sua opção: ")
@@ -73,6 +84,8 @@ while True:
     elif opcao == "3":
         pesquisa_categoria()
     elif opcao == "4":
+        pesquisa_preco()
+    elif opcao == "5":
         adicionar()
     elif opcao == "0":
         print("Saindo do sistema...")
