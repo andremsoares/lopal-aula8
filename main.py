@@ -17,7 +17,11 @@ def salvar_produtos(produtos):
 # 3 - Adicionar produtos
 # 4 - Remover produtos
 
-
+def mostrar():
+    arquivo = open("produtos.json", "r", encoding="utf-8")
+    produtos = json.load(arquivo)
+    arquivo.close()
+    print(produtos)
 
 while True:
     print("====CONTROLE DE ESTOQUE====")
@@ -25,6 +29,15 @@ while True:
     print("2 - Pesquisar produtos")
     print("3 - Adicionar produtos")
     print("4 - Remover produtos")
+    print("0 - Sair")
     
     opcao = input("Digite sua opção: ")
     
+    if opcao == "1":
+        mostrar()
+    elif opcao == "0":
+        print("Saindo do sistema...")
+        break
+    else:
+        print("Opção inválida. Tente novamente")
+        
