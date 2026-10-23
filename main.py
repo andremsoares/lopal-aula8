@@ -63,8 +63,16 @@ def adicionar():
     
     produtos.append(novo_produto)
     salvar_produtos(produtos)
+    print("Seu produto foi adicionado!")
 
-
+def remover():
+    produtos = carregar_produtos()
+    produto_removido = input("Digite o nome do produto que irá ser removido: ")
+    for produto in produtos:
+        if produto["nome"] == produto_removido:
+            produtos.remove(produto)
+            salvar_produtos(produtos)
+    print("Seu produto foi removido.")
 
 while True:
     print("====CONTROLE DE ESTOQUE====")
@@ -88,6 +96,8 @@ while True:
         pesquisa_preco()
     elif opcao == "5":
         adicionar()
+    elif opcao == "6":
+        remover()
     elif opcao == "0":
         print("Saindo do sistema...")
         break
