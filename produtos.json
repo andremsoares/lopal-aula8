@@ -82,5 +82,19 @@
         "categoria": "bbb",
         "preco": 999.0,
         "estoque": "ccc"
+    },
+    {
+        "id": 13,
+        "nome": "aaa",
+        "categoria": "bbb",
+        "preco": 59.0,
+        "estoque": "ccc"
+    },
+    {
+        "id": 14,
+        "nome": "PC Gamer",
+        "categoria": "Computador",
+        "preco": 67000.0,
+        "estoque": "65"
     }
 ]

@@ -46,7 +46,7 @@ def pesquisa_preco():
 
 def adicionar():
     produtos = carregar_produtos()
-    id = produtos[-1]["id"]
+    id = carregar_produtos()[-1]["id"]
     nome = input("Digite o nome do produto: ")
     categoria = input("Digite a categoria do produto: ")
     preco = float(input("Digite o preço do produto: "))
@@ -60,10 +60,11 @@ def adicionar():
         "preco": preco,
         "estoque": estoque
     }
-
+    
     produtos.append(novo_produto)
     salvar_produtos(produtos)
-    
+
+
 
 while True:
     print("====CONTROLE DE ESTOQUE====")
